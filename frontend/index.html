@@ -8,24 +8,26 @@
   </head>
   <body>
     <div class="container">
-      <h1>Quote App</h1>
+      <h1>Quote App 12345</h1>
 
-      <form id="addQuoteForm">
+      <form id="addQuoteForm" class="form">
         <textarea
           id="quoteText"
+          class="quote-input"
           placeholder="Enter Quote Text"
-          rows="5"
+          rows="3"
           required
         ></textarea>
         <input
           type="text"
           id="quoteAuthor"
+          class="quote-input"
           placeholder="Enter Author"
           required
         />
-        <button type="submit">Add Quote</button>
+        <button type="submit" class="add-button">Add Quote</button>
       </form>
-      <div id="quoteList"></div>
+      <div id="quoteList" class="quote-list"></div>
     </div>
 
     <script src="script.js" defer></script>

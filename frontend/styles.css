@@ -1,5 +1,13 @@
-body {
+/* Global Styles */
+
+html {
   font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -10,26 +18,68 @@ body {
 
 h1 {
   text-align: center;
-}
-
-#quoteList {
   margin-bottom: 20px;
-  margin-top: 20px;
+  color: #333;
 }
 
-.quote {
-  border: 1px solid #ccc;
-  padding: 10px;
+/* Form Styles */
+.form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote-input {
+  width: 100%;
   margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: Arial, sans-serif !important;
 }
 
-.quote p {
-  margin: 0;
+.add-button {
+  width: 100%;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif !important;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 16px;
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* Quote List Styles */
+.quote-list {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.quote-text {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.quote-author {
+  font-size: 14px;
+  font-style: italic;
+  color: #888;
 }

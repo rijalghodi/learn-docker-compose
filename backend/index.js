@@ -1,7 +1,18 @@
 const express = require("express");
+const { Pool } = require("pg");
 const cors = require("cors");
+require("dotenv").config();
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.BACKEND_PORT;
+
+// PostgreSQL connection configuration
+const pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+});
 
 // Body parser middleware
 app.use(express.json());
@@ -9,23 +20,32 @@ app.use(express.json());
 // Use CORS middleware
 app.use(cors());
 
-let quotes = [];
-
-// Create a new quote
-app.post("/quotes", (req, res) => {
+// Route to create a new quote
+app.post("/quotes", async (req, res) => {
   const { text, author } = req.body;
-  const newQuote = {
-    id: quotes.length + 1,
-    text,
-    author,
-  };
-  quotes.push(newQuote);
-  res.json(newQuote);
+  try {
+    const result = await pool.query(
+      "INSERT INTO quotes (text, author) VALUES ($1, $2) RETURNING *",
+      [text, author]
+    );
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error creating quote:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the quote" });
+  }
 });
 
-// Read all quotes
-app.get("/quotes", (req, res) => {
-  res.json(quotes);
+// Route to read all quotes
+app.get("/quotes", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM quotes");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error reading quotes:", error);
+    res.status(500).json({ error: "An error occurred while reading quotes" });
+  }
 });
 
 // Root route

@@ -1,5 +1,7 @@
 FROM node:alpine
 
+LABEL version="1.0.0"
+
 # Set the working directory
 WORKDIR /app
 

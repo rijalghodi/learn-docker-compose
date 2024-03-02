@@ -1,0 +1,19 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile.staging
+    ports:
+      - "4000:4000"
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile.staging
+    ports:
+      - "3000:3000"
+    # depends_on defines what services that run first
+    depends_on:
+      - backend

@@ -1,0 +1,16 @@
+FROM node:alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the HTML, CSS, and JavaScript files into the container
+COPY . .
+
+# Install http-server globally via npm
+RUN npm install -g http-server
+
+# Expose port 3000 to the outside world
+EXPOSE 3000
+
+# Command to run the web server
+CMD ["http-server", "-p", "3000"]
